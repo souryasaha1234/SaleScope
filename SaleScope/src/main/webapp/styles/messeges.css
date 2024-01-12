@@ -1,0 +1,38 @@
+@import url('//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css');
+
+.success-msg,
+.warning-msg,
+.error-msg {
+  width: fit-content;
+  margin: auto;
+  padding: 10px;
+  border-radius: 3px 3px 3px 3px;
+}
+.success-msg {
+  color: #270;
+  background-color: #DFF2BF;
+}
+.warning-msg {
+  color: #9F6000;
+  background-color: #FEEFB3;
+}
+.error-msg {
+  color: #D8000C;
+  background-color: #FFBABA;
+}
+button {
+	background-color: red;
+	color: white;
+	font-size: 20px;
+	border: none;
+	border-radius: 10px;
+	padding: 5px;
+	padding-left: 10px;
+	padding-right: 10px;
+	transition: transform 0.5s;
+}
+button:hover {
+	background-color: rgba(255, 0, 0, 0.7);
+	transform: scale(1.2);
+	cursor: pointer;
+}

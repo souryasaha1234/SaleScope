@@ -36,16 +36,37 @@ public class SignupServlet extends HttpServlet {
 			
 			AccountsService accountsService = AccountsServiceFactory.getAccountsServiceObject();
 			String status = accountsService.signupService(acc);
-			
+			System.out.println(status);
 			if(status.equalsIgnoreCase("success")) {
 				System.out.println("Account inserted succesfully");
 				HttpSession session = request.getSession();
 				session.setAttribute("username", uname);
 				response.sendRedirect("homepage");
+			}			
+			else if(status.equalsIgnoreCase("DuplicateUname")) {
+				messegeSignUp = "Username already existed";
+				request.setAttribute("messegeSignUp", messegeSignUp);
+				request.setAttribute("messegeLogIn", null);
+				request.setAttribute("username", uname);
+				request.setAttribute("email", uemail);
+				request.setAttribute("password", upassword);
+				RequestDispatcher rd = request.getRequestDispatcher("login");
+				rd.forward(request, response);				
+			}
+			else if(status.equalsIgnoreCase("failure")) {
+				System.out.println("Account insertion failed - duplicate email adress");
+				messegeSignUp = "Email adress already existed";
+				request.setAttribute("messegeSignUp", messegeSignUp);
+				request.setAttribute("messegeLogIn", null);
+				request.setAttribute("username", uname);
+				request.setAttribute("email", uemail);
+				request.setAttribute("password", upassword);
+				RequestDispatcher rd = request.getRequestDispatcher("login");
+				rd.forward(request, response);
 			}
 			else {
-				System.out.println("Account insertion failed");
-				messegeSignUp = "Email adress already existed";
+				System.out.println("Account insertion failed - Error occoured");
+				messegeSignUp = "Some Error occoured";
 				request.setAttribute("messegeSignUp", messegeSignUp);
 				request.setAttribute("messegeLogIn", null);
 				request.setAttribute("username", uname);

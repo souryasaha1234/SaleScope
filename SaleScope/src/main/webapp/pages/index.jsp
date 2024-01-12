@@ -17,7 +17,7 @@
         	
         		String log = null;
         		String insertNewPdtLink = null;
-        		String welcome = null;
+        		String welcome = "";
         		//User verification
         		if(session.getAttribute("username") == null){
         			log = "<a id='login' class='logs' href='login'>LogIn</a>";

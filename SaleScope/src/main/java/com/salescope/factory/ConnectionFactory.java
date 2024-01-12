@@ -16,4 +16,13 @@ public class ConnectionFactory {
 	public static Connection getConnectionObject() {
 		return con;
 	}
+	
+	public static Connection getUserDBConnectionObject(String uname) {
+		try {
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/"+uname, "root", "database");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return con;
+	}
 }

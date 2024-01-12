@@ -264,7 +264,7 @@ footer a {
     border-radius: 30px;
     margin: auto;
     text-align: center;
-    margin-top: 30vh;
+    margin-top: 15vh;
     font-size: 20px;
     background-color: rgb(19, 16, 43);
 }
@@ -274,4 +274,22 @@ footer a {
 }
 .userInputForm td {
     padding: 20px;
+}
+.userInputForm td input[type="text"] {
+/* .userInputForm td input { */
+    border: 1px solid transparent;
+    border-radius: 10px;
+    background-color: transparent;
+    box-shadow: 0px 0px 5px white;
+    color: white;
+    padding: 3px;
+    text-align: center;
+    width: fit-content;
+    outline: none;
+}
+.userInputForm td input::placeholder {
+    color: gray;
+}
+.userInputForm td input[type="text"]:focus {
+    border: 1px solid white;
 }

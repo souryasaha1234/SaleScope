@@ -12,7 +12,7 @@ public class AccountsDaoImpl implements AccountsDao {
 
 	@Override
 	public String loginDao(Accounts acc) {
-		//Resouce declaration
+		//Resource declaration
 				Connection con = null;
 				Statement st = null;
 				ResultSet rs = null;
@@ -34,7 +34,7 @@ public class AccountsDaoImpl implements AccountsDao {
 					uemail = "'" + acc.getUemail() + "'";
 					upassword = acc.getPass();
 					
-					// INSERT INTO ACCOUNTS VALUES ('sahasourya@gmail.com', 'sourya1234', '1234sourya');
+					// SELECT * FROM ACCOUNTS WHERE EMAIL = "sahasourya@gmail.com";
 					//generating the query
 					String query = "SELECT * FROM ACCOUNTS WHERE EMAIL = "+uemail+"";
 					
@@ -78,13 +78,15 @@ public class AccountsDaoImpl implements AccountsDao {
 
 	@Override
 	public String signupDao(Accounts acc) {
-		//Resouce declaration
+		//Resource declaration
 		Connection con = null;
 		Statement st = null;
+		Statement st1 = null;
+		ResultSet rs = null;
 		
 		//variable declarations
 		
-		String status = null, uname = null, uemail = null, upassword = null;
+		String status = null, uname = null, uemail = null, upassword = null, AccQuery = null;
 		int count = 0;
 		
 		try {
@@ -92,27 +94,46 @@ public class AccountsDaoImpl implements AccountsDao {
 			con = ConnectionFactory.getConnectionObject();
 			
 			// creating statement object
-			if(con != null)
+			if(con != null) {
 				st = con.createStatement();
+				st1 = con.createStatement();
+			}
 			
 			//Getting accounts details
 			uname = "'" + acc.getUname() + "'";
 			uemail = "'" + acc.getUemail() + "'";
 			upassword = "'" + acc.getPass() + "'";
 			
-			// INSERT INTO ACCOUNTS VALUES ('sahasourya@gmail.com', 'sourya1234', '1234sourya');
-			//generating the query
-			String query = "INSERT INTO ACCOUNTS VALUES ("+uemail+", "+uname+", "+upassword+")";
+			String Checkquery = "SELECT * FROM ACCOUNTS WHERE UNAME = "+uname;
 			
 			// Execute the query
-			if(st != null)
-				count = st.executeUpdate(query);
+			if(st1 != null)
+				rs = st1.executeQuery(Checkquery);
 			
-			//generating status
-			if (count == 1)
-				status = "success";
+			if (rs.next() == false){
+				// INSERT INTO ACCOUNTS VALUES ('sahasourya@gmail.com', 'sourya1234', '1234sourya');
+				//generating the query
+				String query = "INSERT INTO ACCOUNTS VALUES ("+uemail+", "+uname+", "+upassword+") ";
+				//System.out.println(query);
+				
+				// Execute the query
+				if(st != null)
+					count = st.executeUpdate(query);
+				
+				//generating status
+				if (count == 1) {
+					status = "success";
+					String dbname = uname.substring(1, uname.length()-1);
+					//System.out.println(dbname);
+					AccQuery = "CREATE DATABASE " + dbname+ "";
+					if(st != null)
+						st.executeUpdate(AccQuery);
+				}
+				else
+					status = "failure";
+			}
 			else
-				status = "failure";
+				status = "DuplicateUname";
 			
 		} catch (SQLException se) {
 			if(se.getErrorCode() == 1)
@@ -130,6 +151,12 @@ public class AccountsDaoImpl implements AccountsDao {
 			try {
 				if(st != null)
 					st.close();
+			} catch (SQLException se) {
+				se.printStackTrace();
+			}
+			try {
+				if(rs != null)
+					rs.close();
 			} catch (SQLException se) {
 				se.printStackTrace();
 			}
