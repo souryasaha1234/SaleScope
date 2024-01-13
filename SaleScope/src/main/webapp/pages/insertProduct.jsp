@@ -65,5 +65,25 @@
             </tr>
         </table>
     </form>
+    <footer>
+	    <a href="homepage"
+	        ><img
+	            src="resources/img/SaleScope-logos_transparent.png"
+	            id="logo_footer"
+	            height="150px"
+	    /></a>
+	    <p>Copyright &copy 2024 SaleScope India</p>
+	    <h1>
+	        <a href="#" target="_blank"><i class="bi bi-facebook"></i></a>
+	        <a href="#" target="_blank"><i class="bi bi-instagram"></i></a>
+	        <a href="#" target="_blank"><i class="bi bi-twitter"></i></a>
+	        <a href="#" target="_blank"><i class="bi bi-linkedin"></i></a>
+	        <a href="#" target="_blank"><i class="bi bi-google"></i></a>
+	        <a href="#" target="_blank"><i class="bi bi-github"></i></a>
+	    </h1>
+	    <p>All rights are reserved</p>
+	    <p>Developed & Maintained by-@Sourya Saha</p>
+	    <br />
+	</footer>
 </body>
 </html>
