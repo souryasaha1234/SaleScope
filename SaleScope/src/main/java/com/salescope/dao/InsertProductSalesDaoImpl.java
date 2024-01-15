@@ -6,11 +6,12 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Random;
 
+import com.salescope.bean.Product;
 import com.salescope.factory.ConnectionFactory;
 
-public class InsertNewProductDaoImpl implements InsertNewProductDao {
+public class InsertProductSalesDaoImpl implements InsertProductSalesDao {
 
-    private static String generateRandomNumber() {
+	private static String generateRandomNumber() {
         // Creating an instance of the Random class
         Random random = new Random();
 
@@ -22,51 +23,45 @@ public class InsertNewProductDaoImpl implements InsertNewProductDao {
 
         return formattedRandomNum;
     }
-
 	
 	@Override
-	public String insertNewProduct(String pdtName, String uname) {
+	public String insertProductSales(Product pdt, String uname) {
+		// Resource declaration
 		Connection con = null;
 		Statement st = null;
 		ResultSet rs = null;
-		String status = null;
-		String query1 = null, query2 = null, query3 = null, query4 = null, query5 = null;
+		String status = "";
+		String query = "";
+		String query1 = "";
 		
 		try {
 			con = ConnectionFactory.getUserDBConnectionObject(uname);
-
 			if(con != null)
 				st = con.createStatement();
-			
-			if(st!=null) {
-				//checking if product table already exists or not
-				query1 = "SHOW TABLES";
-				rs = st.executeQuery(query1);
-				
-				boolean flag = false;
-				while (rs.next() != false) {
-					if (rs.getString(1).equalsIgnoreCase("products"))
-						flag = true;
-				}
-				if(flag == false) { // if not present
-					// making product table
-					query2 = "CREATE TABLE PRODUCTS(PDT_ID VARCHAR(4) PRIMARY KEY, PDT_NAME VARCHAR(20))";
-					int count_check = st.executeUpdate(query2);
-					if(count_check == 1)
-						System.out.println("Product table created successfully!!");
-				}
-				
-				//inserting new product to the product table
+			if(st != null) {
+				// Creation of a particular product table
+				String pdtSelect = pdt.getPdtSelect();
+				String costPrice = pdt.getCostPrice();
+				String sellPrice = pdt.getSellPrice();
+				String purchaseQty = pdt.getPurchaseQty();
+				String sellQty = pdt.getSellQty();
+				String purchaseDate = pdt.getPurchaseDate();
+				String sellDate = pdt.getSellDate();
+
+				int totalPurchase = Integer.parseInt(costPrice) * Integer.parseInt(purchaseQty);
+				int totalSale = Integer.parseInt(sellPrice) * Integer.parseInt(sellPrice);
+				int netProfit = totalSale - totalPurchase;
+
 				boolean flag1;
-				//checking if id already exists
+				//checking if sales already exists
 				String formattedRandomNum = "";
 				do {
 					//generating id 
 					formattedRandomNum = generateRandomNumber();
 					//System.out.println("Random Number: " + formattedRandomNum);
 					
-					query3 = "SELECT PDT_ID FROM PRODUCTS WHERE PDT_ID = "+formattedRandomNum;
-					rs = st.executeQuery(query3);
+					query1 = "SELECT SALESID FROM PDT_"+pdtSelect+" WHERE SALESID = "+formattedRandomNum;
+					rs = st.executeQuery(query1);
 					
 					flag1 = false;
 					while (rs.next() != false) {
@@ -75,28 +70,16 @@ public class InsertNewProductDaoImpl implements InsertNewProductDao {
 					}
 				} while (flag1 == true);
 				
+				// INSERT INTO 103-DBMS VALUES ('1', 'EyeDrop');
+				query = "INSERT INTO PDT_"+pdtSelect+" VALUES('"+formattedRandomNum+"','"+costPrice+"', '"+sellPrice+"', '"+purchaseQty+"', '"+sellQty+"', '"+totalPurchase+"', '"+totalSale+"', '"+netProfit+"', '"+purchaseDate+"', '"+sellDate+"')";
+				System.out.println(query);
+				int count = st.executeUpdate(query);
 				
-				// INSERT INTO PRODUCTS VALUES ('102', 'EyeDrop');
-				query4 = "INSERT INTO PRODUCTS VALUES ('"+formattedRandomNum+"', '"+pdtName+"')";
-				int count = st.executeUpdate(query4);
-				
-				if(count == 1) {
+				if(count == 1)
 					status = "success";
-					System.out.println("Product added successfully");
-					
-					
-					// making product table
-					String pdtSelect = formattedRandomNum +"_"+pdtName;
-					query5 = "CREATE TABLE PDT_"+pdtSelect+"(SALESID VARCHAR(15),COSTPRICE VARCHAR(15), SELLPRICE VARCHAR(15), PURCHASEQTY VARCHAR(15), SELLQTY VARCHAR(15), TOTALPURCHASE VARCHAR(15), TOTALSALE VARCHAR(15), NETPROFIT VARCHAR(15), PURCHASEDATE VARCHAR(15), SELLDATE VARCHAR(15))";
-					System.out.println(query5);
-					int count_check = st.executeUpdate(query5);
-					if(count_check == 1)
-						System.out.println(pdtSelect + " table created successfully!!");
-				}
 				else
 					status = "failed";
 			}
-			
 		} catch (SQLException se) {
 			if(se.getErrorCode() == 1)
 				System.out.println("Duplicate cannot be inserted to primary key column");			
@@ -107,9 +90,9 @@ public class InsertNewProductDaoImpl implements InsertNewProductDao {
 			if(se.getErrorCode() == 12899)
 				System.out.println("Do not insert more than column size data to column");
 			System.out.println(se);
+			se.printStackTrace();
 			status = "error";
-		}
-		finally {
+		} finally {
 			try {
 				if(st != null)
 					st.close();
@@ -129,6 +112,17 @@ public class InsertNewProductDaoImpl implements InsertNewProductDao {
 				se.printStackTrace();
 			}
 		}
+		
+//		System.out.println("===========================================");
+//		System.out.println(pdtSelect);
+//		System.out.println(costPrice);
+//		System.out.println(sellPrice);
+//		System.out.println(purchaseQty);
+//		System.out.println(sellQty);
+//		System.out.println(purchaseDate);
+//		System.out.println(sellDate);
+//		System.out.println("===========================================");
+		
 		return status;
 	}
 

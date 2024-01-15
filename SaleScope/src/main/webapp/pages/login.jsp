@@ -27,10 +27,10 @@
                     <h1>Create Account</h1>
                     <span id="signupmsg">${messegeSignUp}</span>
                     
-                    <input type="text" placeholder="Username" name="uname" value="${username }" />
-                    <input type="email" placeholder="Email" name="uemail" value="${email }" />
-                    <input type="password" placeholder="Password" name="upassword" value="${password }" />
-                    <input type="password" placeholder="Confirm Password" name="cnfpassword" />
+                    <input type="text" placeholder="Username" name="uname" value="${username }" required/>
+                    <input type="email" placeholder="Email" name="uemail" value="${email }" required/>
+                    <input type="password" placeholder="Password" name="upassword" value="${password }" required/>
+                    <input type="password" placeholder="Confirm Password" name="cnfpassword" required/>
                     <button type="submit">Sign Up</button>
                 </form>
             </div>
@@ -39,9 +39,9 @@
                     <h1>Log in</h1>
                     <span>${messegeLogIn}</span>
                     
-                    <input type="text" placeholder="Username" name="uname" />
-                    <input type="email" placeholder="Email" name="uemail" />
-                    <input type="password" placeholder="Password" name="upassword" />
+                    <input type="text" placeholder="Username" name="uname" required/>
+                    <input type="email" placeholder="Email" name="uemail" required/>
+                    <input type="password" placeholder="Password" name="upassword" required/>
                     <a href="#">Forgot your password?</a>
                     <button type="submit">Log In</button>
                 </form>

@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Insert Product</title>
+    <title>Update Sales Form</title>
     <link rel="stylesheet" href="styles/style.css">
     <link rel="stylesheet" href="styles/messeges.css">
 </head>
@@ -51,17 +51,45 @@
 
 	<%= msg %>
 	
-    <form action="InsertProductServlet" method="POST" class="userInputForm">
+    <form action="UpdateSalesServlet" method="POST" class="userInputForm">
         <table>
             <tr>
-                <td colspan="2" class="formhead">Insert New Product</td>
+                <td colspan="2" class="formhead">Update Sales</td>
             </tr>
             <tr>
                 <td>Product Name: </td>
-                <td><input type="text" name="pdtname" placeholder="Product name" required></td>
+                <td><input type="text" name="pdtname" value="${request.getParameter('pdt') }" readonly></td>
             </tr>
             <tr>
-                <td colspan="2"><button type="submit">Insert</button></td>
+                <td>Sales Id: </td>
+                <td><input type="text" name="salesId" value="${request.getParameter('salesId') }" readonly></td>
+            </tr>
+            <tr>
+                <td>Cost price/product: </td>
+                <td><input type="number" name="costPrice" value="${request.getParameter('costPrice') }" required></td>
+            </tr>
+            <tr>
+                <td>Sell price/product: </td>
+                <td><input type="number" name="sellPrice" value="${request.getParameter('sellPrice') }" required></td>
+            </tr>
+            <tr>
+                <td>Purchase quantity: </td>
+                <td><input type="number" name="purchaseQty" value="${request.getParameter('purchaseQty') }" required></td>
+            </tr>
+            <tr>
+                <td>Sell quantity: </td>
+                <td><input type="number" name="sellQty" value="${request.getParameter('sellQty') }" required></td>
+            </tr>
+            <tr>
+                <td>Date of purchase: </td>
+                <td><input type="date" name="purchaseDate" value="${request.getParameter('purchaseDate') }" required></td>
+            </tr>
+            <tr>
+                <td>Date of Sell: </td>
+                <td><input type="date" name="sellDate" value="${request.getParameter('sellDate') }" required></td>
+            </tr>
+            <tr>
+                <td colspan="2"><button type="submit">Update</button></td>
             </tr>
         </table>
     </form>

@@ -48,8 +48,9 @@ a {
 
 button {
 	border-radius: 20px;
-	border: 1px solid #FF4B2B;
-	background-color: #FF4B2B;
+	border: 1px solid #3a15de;
+    background-color: #10063f;
+    box-shadow: 3px 3px 8px inset white;
 	color: #FFFFFF;
 	font-size: 12px;
 	font-weight: bold;
@@ -73,7 +74,7 @@ button:hover {
 
 button.ghost {
 	background-color: transparent;
-	border-color: #FFFFFF;
+	border-color: #3a15de;
 }
 
 form {
@@ -96,11 +97,12 @@ input {
 }
 
 .container {
-	background-color: #fff;
-	border-radius: 10px;
-  	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
-			0 10px 10px rgba(0,0,0,0.22);
-	position: relative;
+	background-color: whitesmoke;
+	border: 1px solid black;
+    border-radius: 15px;
+    /* box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 
+    				0 10px 10px rgba(0, 0, 0, 0.22); */
+    position: relative;
 	overflow: hidden;
 	width: 768px;
 	max-width: 100%;
@@ -166,9 +168,9 @@ input {
 }
 
 .overlay {
-	background: #FF416C;
-	background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C);
-	background: linear-gradient(to right, #FF4B2B, #FF416C);
+	background: #10063f;
+	background: -webkit-linear-gradient(to right, #10063f, #10063f);
+	background: linear-gradient(to right, #10063f, #10063f);
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: 0 0;

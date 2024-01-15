@@ -17,16 +17,25 @@
         	
         		String log = null;
         		String insertNewPdtLink = null;
+        		String insertNewPdtSalesLink = null;
+        		String DisplaySalesReportLink = null;
+        		String UpdateSalesLink = null;
         		String welcome = "";
         		//User verification
         		if(session.getAttribute("username") == null){
         			log = "<a id='login' class='logs' href='login'>LogIn</a>";
         			insertNewPdtLink = "href='login'";
+        			insertNewPdtSalesLink = "href='login'";
+        			DisplaySalesReportLink = "href='login'";
+        			UpdateSalesLink = "href='login'";
         		}
         		else{
         			//authorized user
         			log = "<a id='logout' class='logs' href='logout'>LogOut</a>";
         			insertNewPdtLink = "href='insertproduct'";
+        			insertNewPdtSalesLink = "href='getProductServlet?desturl=insertProductSales'";
+        			DisplaySalesReportLink = "href='getProductServlet?desturl=displayReport'";
+        			UpdateSalesLink = "href='getProductServlet?desturl=updateSales'";
         			welcome = "<p class='welcome-message'>Welcome <b style='color: red;'>"+session.getAttribute("username")+"</b>!</p>";
         		}
         	%>
@@ -56,7 +65,7 @@
                         <div class="ag-operations-item_date-box">
                             <i class="bi bi-arrow-right"></i>
                             <a
-                                href="insertproduct"
+                                <%= insertNewPdtLink %>
                                 class="ag-operations-item_date"
                             >
                                 Insert
@@ -75,7 +84,9 @@
 
                         <div class="ag-operations-item_date-box">
                             <i class="bi bi-arrow-right"></i>
-                            <a href="#" class="ag-operations-item_date">
+                            <a  
+                               <%= insertNewPdtSalesLink %>
+                               class="ag-operations-item_date">
                                 Insert
                             </a>
                         </div>
@@ -92,7 +103,9 @@
 
                         <div class="ag-operations-item_date-box">
                             <i class="bi bi-arrow-right"></i>
-                            <a href="" class="ag-operations-item_date">
+                            <a 
+                            	<%= DisplaySalesReportLink %>
+                            	class="ag-operations-item_date">
                                 Display
                             </a>
                         </div>
@@ -109,7 +122,9 @@
 
                         <div class="ag-operations-item_date-box">
                             <i class="bi bi-arrow-right"></i>
-                            <a href="" class="ag-operations-item_date">
+                            <a 
+                            	<%= UpdateSalesLink %>
+                            	class="ag-operations-item_date">
                                 Update
                             </a>
                         </div>

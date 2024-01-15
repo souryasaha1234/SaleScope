@@ -6,6 +6,7 @@ import java.sql.SQLException;
 
 public class ConnectionFactory {
 	private static Connection  con= null;
+	private static Connection  con1= null;
 	static {
 		try {
 			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/salescope", "root", "database");
@@ -19,10 +20,10 @@ public class ConnectionFactory {
 	
 	public static Connection getUserDBConnectionObject(String uname) {
 		try {
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/"+uname, "root", "database");
+			con1 = DriverManager.getConnection("jdbc:mysql://localhost:3306/"+uname, "root", "database");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return con;
+		return con1;
 	}
 }

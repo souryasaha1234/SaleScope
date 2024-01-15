@@ -1,0 +1,39 @@
+#reportTable {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 90%;
+    margin: auto;
+    background-color: #005B41;
+    margin-top: 10vh;
+}
+
+#reportTable td, #reportTable th {
+    border: 1px solid #ddd;
+    padding: 15px;
+	width: fit-content;
+}
+
+#reportTable tr:nth-child(even){background-color: #008170;}
+
+#reportTable tr:hover {background-color: #838060;}
+
+#reportTable th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #232D3F;
+    color: white;
+}
+#reportTable .updateBtn {
+    text-decoration: none;
+    color: white;
+    background-color: #3ecd5e;
+    border: 1px solid black;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px inset white;
+    padding: 5px;
+}
+#reportTable .updateBtn:hover {
+    background-color: #2a8c3f;
+    transform: scale(0.5);
+}

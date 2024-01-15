@@ -62,7 +62,7 @@ public class AccountsDaoImpl implements AccountsDao {
 						System.out.println("Invalid column name or table name or SQL keywords");			
 					if(se.getErrorCode() == 12899)
 						System.out.println("Do not insert more than column size data to column");
-					System.out.println(se.toString());
+					se.printStackTrace();
 					status = "error";
 				}
 				finally {

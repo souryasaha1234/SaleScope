@@ -33,4 +33,40 @@
   	<url-pattern>/insertproduct</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+  	<servlet-name>insertProductSales</servlet-name>
+  	<jsp-file>/pages/insertProductSales.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>insertProductSales</servlet-name>
+  	<url-pattern>/insertProductSales</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>displayReport</servlet-name>
+  	<jsp-file>/pages/displayReport.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>displayReport</servlet-name>
+  	<url-pattern>/displayReport</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>updateSales</servlet-name>
+  	<jsp-file>/pages/updateSales.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>updateSales</servlet-name>
+  	<url-pattern>/updateSales</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>UpdateSalesFormPage</servlet-name>
+  	<jsp-file>/pages/UpdateSalesFormPage.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>UpdateSalesFormPage</servlet-name>
+  	<url-pattern>/UpdateSalesFormPage</url-pattern>
+  </servlet-mapping>
+  
 </web-app>
