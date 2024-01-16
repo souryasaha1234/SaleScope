@@ -39,9 +39,9 @@
                     <h1>Log in</h1>
                     <span>${messegeLogIn}</span>
                     
-                    <input type="text" placeholder="Username" name="uname" required/>
-                    <input type="email" placeholder="Email" name="uemail" required/>
-                    <input type="password" placeholder="Password" name="upassword" required/>
+                    <input type="text" placeholder="Username" name="uname" value="${username }" required/>
+                    <input type="email" placeholder="Email" name="uemail" value="${email }" required/>
+                    <input type="password" placeholder="Password" name="upassword" value="${password }" required/>
                     <a href="#">Forgot your password?</a>
                     <button type="submit">Log In</button>
                 </form>

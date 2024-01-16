@@ -79,6 +79,7 @@ public class GetReportDaoImpl implements GetReportDao {
 						report = new Report();
 						report.setPdtSelect(pdt);
 						report.setCostPrice(rs.getString("COSTPRICE"));
+						report.setSalesId(rs.getString("SALESID"));
 						report.setSellPrice(rs.getString("SELLPRICE"));
 						report.setPurchaseQty(rs.getString("PURCHASEQTY"));
 						report.setSellQty(rs.getString("SELLQTY"));

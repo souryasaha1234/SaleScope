@@ -24,7 +24,7 @@
     background-color: #232D3F;
     color: white;
 }
-#reportTable .updateBtn {
+#reportTable .updateBtn, .deleteBtn {
     text-decoration: none;
     color: white;
     background-color: #3ecd5e;
@@ -35,5 +35,16 @@
 }
 #reportTable .updateBtn:hover {
     background-color: #2a8c3f;
-    transform: scale(0.5);
+}
+#reportTable .deleteBtn {
+    text-decoration: none;
+    color: white;
+    border: 1px solid black;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px inset white;
+    padding: 5px;
+    background-color: #941b0c;
+}
+#reportTable .deleteBtn:hover {
+    background-color: #621708;
 }

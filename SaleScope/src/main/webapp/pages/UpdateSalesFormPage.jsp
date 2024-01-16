@@ -58,35 +58,35 @@
             </tr>
             <tr>
                 <td>Product Name: </td>
-                <td><input type="text" name="pdtname" value="${request.getParameter('pdt') }" readonly></td>
+                <td><input type="text" name="pdtname" value="<%=request.getParameter("pdt") %>" readonly></td>
             </tr>
             <tr>
                 <td>Sales Id: </td>
-                <td><input type="text" name="salesId" value="${request.getParameter('salesId') }" readonly></td>
+                <td><input type="text" name="salesId" value="<%=request.getParameter("salesId") %>" readonly></td>
             </tr>
             <tr>
                 <td>Cost price/product: </td>
-                <td><input type="number" name="costPrice" value="${request.getParameter('costPrice') }" required></td>
+                <td><input type="number" name="costPrice" value="<%=request.getParameter("costPrice") %>" required></td>
             </tr>
             <tr>
                 <td>Sell price/product: </td>
-                <td><input type="number" name="sellPrice" value="${request.getParameter('sellPrice') }" required></td>
+                <td><input type="number" name="sellPrice" value="<%=request.getParameter("sellPrice") %>" required></td>
             </tr>
             <tr>
                 <td>Purchase quantity: </td>
-                <td><input type="number" name="purchaseQty" value="${request.getParameter('purchaseQty') }" required></td>
+                <td><input type="number" name="purchaseQty" value="<%=request.getParameter("purchaseQty") %>" required></td>
             </tr>
             <tr>
                 <td>Sell quantity: </td>
-                <td><input type="number" name="sellQty" value="${request.getParameter('sellQty') }" required></td>
+                <td><input type="number" name="sellQty" value="<%=request.getParameter("sellQty") %>" required></td>
             </tr>
             <tr>
                 <td>Date of purchase: </td>
-                <td><input type="date" name="purchaseDate" value="${request.getParameter('purchaseDate') }" required></td>
+                <td><input type="date" name="purchaseDate" value="<%=request.getParameter("purchaseDate") %>" required></td>
             </tr>
             <tr>
                 <td>Date of Sell: </td>
-                <td><input type="date" name="sellDate" value="${request.getParameter('sellDate') }" required></td>
+                <td><input type="date" name="sellDate" value="<%=request.getParameter("sellDate") %>" required></td>
             </tr>
             <tr>
                 <td colspan="2"><button type="submit">Update</button></td>

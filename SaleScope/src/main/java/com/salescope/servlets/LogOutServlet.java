@@ -21,7 +21,7 @@ public class LogOutServlet extends HttpServlet {
     	
     	HttpSession session = req.getSession();
     	session.removeAttribute("username");
-    	System.out.println(session.getAttribute("username"));
+    	//System.out.println(session.getAttribute("username"));
     	session.invalidate();
     	
     	resp.sendRedirect("login");

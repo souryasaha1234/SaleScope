@@ -69,4 +69,13 @@
   	<url-pattern>/UpdateSalesFormPage</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+  	<servlet-name>deleteSales</servlet-name>
+  	<jsp-file>/pages/deleteSales.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>deleteSales</servlet-name>
+  	<url-pattern>/deleteSales</url-pattern>
+  </servlet-mapping>
+  
 </web-app>

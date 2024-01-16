@@ -8,7 +8,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Update Sales</title>
+    <title>Delete Sales</title>
     <link rel="stylesheet" href="styles/style.css">
     <link rel="stylesheet" href="styles/tablestyle.css">
     <link rel="stylesheet" href="styles/messeges.css">
@@ -36,9 +36,9 @@
    		String msg = "";
 		if (request.getAttribute("message") != null){
 			if (request.getAttribute("message").equals("success"))
-				msg = "<div class='success-msg'><i class='fa fa-check'></i>Sales updated successfully...!</div>";
+				msg = "<div class='success-msg'><i class='fa fa-check'></i>Sales Deteted successfully...!</div>";
 			else if (request.getAttribute("message").equals("failed"))
-				msg = "<div class='warning-msg'><i class='fa fa-warning'></i>Sales updation failed...!</div>";
+				msg = "<div class='warning-msg'><i class='fa fa-warning'></i>Sales deletion failed...!</div>";
 			else if (request.getAttribute("message").equals("error"))
 				msg = "<div class='error-msg'><i class='fa fa-times-circle'></i>Some error occoured...!</div>";
 		}
@@ -55,7 +55,7 @@
          <h3>-: <u>All-in-one Sales Report</u> :-</h3>
      </header>
 
-	<form action="getReportServlet?gotourl=updateSales" method="POST" class="userInputForm">
+	<form action="getReportServlet?gotourl=deleteSales" method="POST" class="userInputForm">
         <table>
             <tr>
                 <td>Select product </td>
@@ -108,8 +108,8 @@
 		      	<td>${rpt.getPurchaseDate() }</td>
 		      	<td>${rpt.getSellDate() }</td>
 
-		      	<td><a href="UpdateSalesFormPage?pdt=${rpt.getPdtSelect() }&salesId=${rpt.getSalesId() }&costPrice=${rpt.getCostPrice() }&sellPrice=${rpt.getSellPrice() }&purchaseQty=${rpt.getPurchaseQty() }&sellQty=${rpt.getSellQty() }&purchaseDate=${rpt.getPurchaseDate() }&sellDate=${rpt.getSellDate() }" 
-		      			class="updateBtn">Update</a></td>
+		      	<td><a href="DeleteSalesServlet?pdtSelect=${rpt.getPdtSelect() }&salesId=${rpt.getSalesId() }" 
+		      			class="deleteBtn">Delete</a></td>
 		    </tr>
 		</c:forEach>
 	</table>

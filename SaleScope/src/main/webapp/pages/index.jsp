@@ -20,6 +20,7 @@
         		String insertNewPdtSalesLink = null;
         		String DisplaySalesReportLink = null;
         		String UpdateSalesLink = null;
+        		String DeleteSalesLink = null;
         		String welcome = "";
         		//User verification
         		if(session.getAttribute("username") == null){
@@ -28,6 +29,7 @@
         			insertNewPdtSalesLink = "href='login'";
         			DisplaySalesReportLink = "href='login'";
         			UpdateSalesLink = "href='login'";
+        			DeleteSalesLink = "href='login'";
         		}
         		else{
         			//authorized user
@@ -36,6 +38,7 @@
         			insertNewPdtSalesLink = "href='getProductServlet?desturl=insertProductSales'";
         			DisplaySalesReportLink = "href='getProductServlet?desturl=displayReport'";
         			UpdateSalesLink = "href='getProductServlet?desturl=updateSales'";
+        			DeleteSalesLink = "href='getProductServlet?desturl=deleteSales'";
         			welcome = "<p class='welcome-message'>Welcome <b style='color: red;'>"+session.getAttribute("username")+"</b>!</p>";
         		}
         	%>
@@ -141,7 +144,9 @@
 
                         <div class="ag-operations-item_date-box">
                             <i class="bi bi-arrow-right"></i>
-                            <a href="" class="ag-operations-item_date">
+                            <a 
+                            	<%= DeleteSalesLink %>
+                            	class="ag-operations-item_date">
                                 Delete
                             </a>
                         </div>
