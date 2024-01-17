@@ -1,3 +1,4 @@
+<%@page import="com.salescope.bean.PnLStruct"%>
 <%@page import="com.salescope.bean.Report"%>
 <%@page import="com.salescope.bean.ProductList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -23,6 +24,7 @@
 		String welcome = null;
 		ProductList[] pdtlt = null;
 		Report[] reportArr = null;
+		PnLStruct pls = null;
 
 		//User verification
    		if(session.getAttribute("username") == null){
@@ -31,6 +33,7 @@
 		else {
 			pdtlt = (ProductList[]) request.getAttribute("productList");
 			reportArr = (Report[]) request.getAttribute("salesReport");
+			pls = (PnLStruct) request.getAttribute("pnlrep");
 			welcome = "<p class='welcome-message'>Welcome <b style='color: red;'>"+session.getAttribute("username")+"</b>!</p>";
 		}
 		
@@ -101,6 +104,42 @@
 		</c:forEach>
 	</table>
 
+	<%
+		String pnlrep = "";
+		if(pls != null){
+			int daily = Integer.parseInt(pls.getDaily());
+			int monthly = Integer.parseInt(pls.getMonthly());
+			int yearly = Integer.parseInt(pls.getYearly());
+			
+			pnlrep += "<div class='displayPL'>"
+					+"<h3>Profit and loss of product "+pls.getPdtName()+"</h3>";
+			
+			if(yearly >= 0){
+				pnlrep += "<p>Yearly:&nbsp;&nbsp;&nbsp;&nbsp; <b style='color: lightgreen;''><i class='bi bi-caret-up-fill'></i> +"+yearly+"</b></p>";
+			}
+			else {
+				pnlrep += "<p>Yearly:&nbsp;&nbsp;&nbsp;&nbsp; <b style='color: red;'><i class='bi bi-caret-down-fill'></i> "+yearly+"</b></p>";
+			}
+			
+			if(monthly >= 0){
+				pnlrep += "<p>Monthly:&nbsp;&nbsp;&nbsp;&nbsp; <b style='color: lightgreen;''><i class='bi bi-caret-up-fill'></i> +"+monthly+"</b></p>";
+			}
+			else {
+				pnlrep += "<p>Monthly:&nbsp;&nbsp;&nbsp;&nbsp; <b style='color: red;'><i class='bi bi-caret-down-fill'></i> "+monthly+"</b></p>";
+			}
+			
+			if(daily >= 0){
+				pnlrep += "<p>Day's:&nbsp;&nbsp;&nbsp;&nbsp; <b style='color: lightgreen;''><i class='bi bi-caret-up-fill'></i> +"+daily+"</b></p>";
+			}
+			else {
+				pnlrep += "<p>Day's:&nbsp;&nbsp;&nbsp;&nbsp; <b style='color: red;'><i class='bi bi-caret-down-fill'></i> "+daily+"</b></p>";
+			}
+			
+			pnlrep += "</div>";
+		}
+	%>
+	
+	<%=pnlrep %>
 	
     <footer>
 	    <a href="homepage"

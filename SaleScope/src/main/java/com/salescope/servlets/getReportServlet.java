@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.salescope.bean.PnLStruct;
 import com.salescope.bean.Report;
 import com.salescope.factory.OperationServiceFactory;
 import com.salescope.service.OperationService;
@@ -36,6 +37,14 @@ public class getReportServlet extends HttpServlet {
 		
 		if(reportArr != null) {
 			request.setAttribute("salesReport", reportArr);
+		}
+		
+		if(gotourl.equalsIgnoreCase("displayReport")) {
+			PnLStruct pls = opservice.getPLReportService(uname, pdtSelect);
+			request.setAttribute("pnlrep", pls);
+//			request.setAttribute("daily", pls.getDaily());
+//			request.setAttribute("monthly", pls.getMonthly());
+//			request.setAttribute("yearly", pls.getYearly());
 		}
 		
 		RequestDispatcher rd = request.getRequestDispatcher("getProductServlet?desturl="+gotourl);

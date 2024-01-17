@@ -48,3 +48,16 @@
 #reportTable .deleteBtn:hover {
     background-color: #621708;
 }
+.displayPL{
+  width: fit-content;
+  margin: auto;
+  margin-top: 15vh;
+  box-shadow: 0px 0px 15px white;
+  border-radius: 20px;
+  padding: 20px;
+  text-align: center;
+}
+.displayPL h3 {
+  font-size: 30px;
+  font-weight: bolder;
+}
