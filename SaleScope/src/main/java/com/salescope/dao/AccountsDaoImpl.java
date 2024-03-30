@@ -1,6 +1,7 @@
 package com.salescope.dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -14,7 +15,7 @@ public class AccountsDaoImpl implements AccountsDao {
 	public String loginDao(Accounts acc) {
 		//Resource declaration
 				Connection con = null;
-				Statement st = null;
+				PreparedStatement st = null;
 				ResultSet rs = null;
 				
 				//variable declarations
@@ -25,23 +26,26 @@ public class AccountsDaoImpl implements AccountsDao {
 					// Establishing database connection
 					con = ConnectionFactory.getConnectionObject();
 					
-					// creating statement object
-					if(con != null)
-						st = con.createStatement();
 					
 					//Getting accounts details
 					uname = acc.getUname();
-					uemail = "'" + acc.getUemail() + "'";
+					uemail = acc.getUemail();
 					upassword = acc.getPass();
 					
 					// SELECT * FROM ACCOUNTS WHERE EMAIL = "sahasourya@gmail.com";
 					//generating the query
-					String query = "SELECT * FROM ACCOUNTS WHERE EMAIL = "+uemail+"";
+					String query = "SELECT * FROM ACCOUNTS WHERE EMAIL = ?";
 					
+					// creating statement object
+					if(con != null) {
+						st = con.prepareStatement(query);
+						st.setString(1, uemail);
+					}
+
 					// Execute the query
 					if(st != null)
-						rs = st.executeQuery(query);
-					
+						rs = st.executeQuery();
+					System.out.println(st);
 					//generating status
 					if (rs.next() != false) {
 						if (rs.getString("uname").equals(uname) && rs.getString("pass").equals(upassword)) {
